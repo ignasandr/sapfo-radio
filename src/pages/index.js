@@ -1,8 +1,14 @@
 import * as React from "react"
 import "./styles.scss" 
+import logo from "../images/logogreen2.png"
+// import logowhite from "../images/logowhite3.png"
+import tape1 from "../images/tape1.png"
 
 // markup
 const IndexPage = () => {
+  const [isPressed, setIsPressed] = React.useState(true);
+
+
   return (
     // <main>
     <main>
@@ -14,6 +20,19 @@ const IndexPage = () => {
             <div id="f3" className="frame"></div>
             <div id="f4" className="frame"></div>
 
+            <div id="f5" className="bg"></div>
+            <div id="f6" className="bg"></div>
+            <div id="f7" className="bg"></div>
+            <div id="f8" className="bg"></div>
+
+            <div id="e1" className="empty">
+              <div id="rLeft" className={!isPressed ? "rotate" : ""}><img src={tape1} alt="Tape1"/></div>
+              <div id="rRight" className={!isPressed ? "rotate" : ""}><img src={tape1} alt="Tape1"/></div>
+            </div>
+
+            <div id="e9" className="empty">
+              <img src={logo} alt="Logo"/>
+            </div>
 
 
             {/* // cassette */}
@@ -50,18 +69,15 @@ const IndexPage = () => {
 
             {/* // empty */}
 
-            <div id="e1" className="empty"></div>
-            <div id="e2" className="empty"></div>
+            {/* <div id="e2" className="empty"></div>
             <div id="e3" className="empty"></div>
-            <div id="e4" className="empty"></div>
-            <div id="e9" className="empty"></div>
+            <div id="e4" className="empty"></div> */}
 
             {/* // label */}
-
-            <div id="l1" className="labelA"></div>
-            <div id="l2" className="labelB"></div>
-            <div id="l3" className="labelA"></div>
-            <div id="l4" className="labelC"></div>
+              <div id="l2" className="labelB"></div>
+              <div id="l3" className="labelA"></div>
+              <div id="l1" className="labelA"></div>
+              <div id="l4" className="labelC"></div>
 
             {/* // dots */}
             <div id="d1" className="bg"></div>
@@ -75,8 +91,9 @@ const IndexPage = () => {
             <div id="d8" className="labelB"></div>
 
             {/* // button */}
-            <div id="button" className="button">
-              <h1>▶</h1>
+            <div role = "button" tabIndex={0} id="button" className={isPressed ? "button" : "buttonPressed"} onClick={() => setIsPressed(!isPressed)} onKeyDown={() => this.setIsPressed(!isPressed)}>
+              {isPressed && <div className="buttonText">▶</div>}
+              {!isPressed && <div className="buttonTextPressed"></div>}
             </div>
 
         </div>
