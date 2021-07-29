@@ -3,11 +3,19 @@ import "./styles.scss"
 import logo from "../images/logogreen2.png"
 // import logowhite from "../images/logowhite3.png"
 import tape1 from "../images/tape1.png"
+import useSound from 'use-sound';
 
 // markup
 const IndexPage = () => {
   const [isPressed, setIsPressed] = React.useState(true);
 
+  const [play, { stop }] = useSound('/NOIZE.mp3');
+
+  const handleClick = () => {
+    isPressed ? play() : stop();
+    isPressed ? console.log("playing") : console.log("stopping");
+    setIsPressed(!isPressed);
+  }
 
   return (
     // <main>
@@ -91,7 +99,7 @@ const IndexPage = () => {
             <div id="d8" className="labelB"></div>
 
             {/* // button */}
-            <div role = "button" tabIndex={0} id="button" className={isPressed ? "button" : "buttonPressed"} onClick={() => setIsPressed(!isPressed)} onKeyDown={() => this.setIsPressed(!isPressed)}>
+            <div role = "button" tabIndex={0} id="button" className={isPressed ? "button" : "buttonPressed"} onClick={handleClick} onKeyDown={() => this.setIsPressed(!isPressed)}>
               {isPressed && <div className="buttonText">▶</div>}
               {!isPressed && <div className="buttonTextPressed"></div>}
             </div>
