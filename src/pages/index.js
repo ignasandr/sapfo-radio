@@ -9,7 +9,7 @@ import useSound from 'use-sound';
 const IndexPage = () => {
   const [isPressed, setIsPressed] = React.useState(true);
 
-  const [play, { stop }] = useSound('/NOIZE.mp3');
+  const [play, { stop }] = useSound('NOIZE.mp3');
 
   const handleClick = () => {
     isPressed ? play() : stop();
