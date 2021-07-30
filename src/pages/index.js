@@ -4,12 +4,14 @@ import logo from "../images/logogreen2.png"
 // import logowhite from "../images/logowhite3.png"
 import tape1 from "../images/tape1.png"
 import useSound from 'use-sound';
+import radio from "../pages/NOIZE.mp3"
 
 // markup
 const IndexPage = () => {
   const [isPressed, setIsPressed] = React.useState(true);
 
-  const [play, { stop }] = useSound('NOIZE.mp3');
+  // const [play, { stop }] = useSound('/NOIZE.mp3');
+  const [play, { stop }] = useSound(radio);
 
   const handleClick = () => {
     isPressed ? play() : stop();
