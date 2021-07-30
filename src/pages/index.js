@@ -1,23 +1,31 @@
 import * as React from "react"
 import "./styles.scss" 
 import logo from "../images/logogreen2.png"
-// import logowhite from "../images/logowhite3.png"
 import tape1 from "../images/tape1.png"
-import useSound from 'use-sound';
-import radio from "../pages/NOIZE.mp3"
 
 // markup
 const IndexPage = () => {
   const [isPressed, setIsPressed] = React.useState(true);
-
-  // const [play, { stop }] = useSound('/NOIZE.mp3');
-  const [play, { stop }] = useSound(radio);
+  const [audio] = React.useState(new Audio('http://84.32.162.3/NOIZE.mp3'));
+  const [playing, setPlaying] = React.useState(false);
 
   const handleClick = () => {
-    isPressed ? play() : stop();
-    isPressed ? console.log("playing") : console.log("stopping");
     setIsPressed(!isPressed);
+    setPlaying(!playing);
   }
+
+  React.useEffect(() => {
+      playing ? audio.play() : audio.pause();
+    },
+    [playing]
+  );
+
+  React.useEffect(() => {
+    audio.addEventListener('ended', () => setPlaying(false));
+    return () => {
+      audio.removeEventListener('ended', () => setPlaying(false));
+    };
+  }, []);
 
   return (
     // <main>
